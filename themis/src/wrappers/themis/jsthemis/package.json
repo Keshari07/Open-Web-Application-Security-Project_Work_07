@@ -1,0 +1,38 @@
+{
+  "name": "jsthemis",
+  "version": "0.15.0",
+  "description": "Themis is a convenient cryptographic library for data protection.",
+  "main": "build/Release/jsthemis.node",
+  "scripts": {
+    "test": "mocha",
+    "preuninstall": "rm -rf build/*",
+    "install_centos7_specific_deps": "./install_centos7_specific_deps.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cossacklabs/themis.git"
+  },
+  "keywords": [
+    "security",
+    "encryption",
+    "cryptography",
+    "themis"
+  ],
+  "author": {
+    "name": "Cossack Labs",
+    "email": "dev@cossacklabs.com",
+    "url": "https://www.cossacklabs.com/"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/cossacklabs/themis/issues"
+  },
+  "homepage": "https://www.cossacklabs.com/themis/",
+  "dependencies": {
+    "nan": "^2.17.0"
+  },
+  "devDependencies": {
+    "mocha": "^9"
+  },
+  "gypfile": true
+}

@@ -1,0 +1,9 @@
+includedir=%includedir%
+libdir=%libdir%
+
+Name: Soter
+Description: Cryptographic primitives for Themis
+Version: %version%
+Cflags: -I${includedir}
+Libs: -L${libdir} -lsoter
+Libs.private: %crypto-libs%

@@ -1,0 +1,9 @@
+includedir=%includedir%
+libdir=%libdir%
+
+Name: Themis
+Description: High-level cryptographic services
+Version: %version%
+Requires.private: libsoter
+Cflags: -I${includedir}
+Libs: -L${libdir} -lthemis

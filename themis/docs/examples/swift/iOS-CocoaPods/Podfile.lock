@@ -1,0 +1,29 @@
+PODS:
+  - CLOpenSSL-XCF (1.1.11101)
+  - themis (0.14.0):
+    - themis/openssl-1.1.1 (= 0.14.0)
+  - themis/openssl-1.1.1 (0.14.0):
+    - CLOpenSSL-XCF (= 1.1.11101)
+    - themis/openssl-1.1.1/core (= 0.14.0)
+    - themis/openssl-1.1.1/objcwrapper (= 0.14.0)
+  - themis/openssl-1.1.1/core (0.14.0):
+    - CLOpenSSL-XCF (= 1.1.11101)
+  - themis/openssl-1.1.1/objcwrapper (0.14.0):
+    - CLOpenSSL-XCF (= 1.1.11101)
+    - themis/openssl-1.1.1/core
+
+DEPENDENCIES:
+  - themis (= 0.14.0)
+
+SPEC REPOS:
+  trunk:
+    - CLOpenSSL-XCF
+    - themis
+
+SPEC CHECKSUMS:
+  CLOpenSSL-XCF: 71ce1fb96734754ea5936e239e15999129413793
+  themis: 4bcef173f13a428822f8db4cb504e4c7b2c302b1
+
+PODFILE CHECKSUM: 768444a6e78d64a8fa6d40159a19487b6c95f7f1
+
+COCOAPODS: 1.11.3

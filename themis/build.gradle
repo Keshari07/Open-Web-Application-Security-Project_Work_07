@@ -1,0 +1,20 @@
+// Common dependency repositories for all subprojects. They need to be set
+// for both Gradle build itself and for the project it compiles.
+allprojects {
+    buildscript {
+        repositories {
+            google()
+            mavenCentral()
+        }
+
+        // Set common Kotlin version that we are going to use.
+        // Can't use higher versions if we are to maintain API 21 as our minimum.
+        // > Invoke-customs are only supported starting with Android O (--min-api 26)
+        ext.kotlin_version = '1.4.32'
+    }
+
+    repositories {
+        google()
+        mavenCentral()
+    }
+}

@@ -1,0 +1,5 @@
+include ':android'
+project(':android').projectDir = new File('src/wrappers/themis/android')
+
+include ':desktop'
+project(':desktop').projectDir = new File('src/wrappers/themis/java')

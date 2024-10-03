@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -eu
+
+# import functions
+. tests/_integration/utils.sh
+
+${commands}
+
+echo "status=$${status}"
+exit $${status}

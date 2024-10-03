@@ -1,0 +1,64 @@
+# Themis build script for pacman in MSYS2 environment
+#
+# Maintainer: Cossack Labs Limited <dev@cossacklabs.com>
+
+pkgname=('themis' 'themis-devel')
+pkgbase=themis
+pkgver=0.15.0
+pkgrel=1
+
+pkgdesc="Data security library for network communication and data storage"
+url="https://www.cossacklabs.com/themis/"
+license=('Apache')
+changelog=CHANGELOG.md
+
+arch=('x86_64' 'i686')
+depends=('libopenssl>=1.1.1')
+makedepends=('tar' 'gcc' 'make' 'openssl-devel>=1.1.1')
+
+source=("https://github.com/cossacklabs/themis/archive/$pkgver.tar.gz")
+sha256sums=('e5ff84e020ea02f545be6948b4a5ed04944fed10d4bc500684d8e79be3f6020d')
+sha1sums=('abab5054190049cdb00540501316a8df3c2496f3')
+md5sums=('30acf0963fae74808041a54b7c902d42')
+# TODO: verify package signature
+
+# Unfortunately, bsdtar cannot handle symlinks on MSYS2 [1] so we have to use
+# regular tar for source code extraction, and make sure that files are removed
+# before extracting them.
+#
+# [1]: https://github.com/msys2/MSYS2-packages/issues/140
+noextract=("$pkgver.tar.gz")
+prepare() {
+    tar --unlink-first --recursive-unlink -xf "$pkgver.tar.gz"
+}
+
+build() {
+    cd "$pkgbase-$pkgver"
+    make PREFIX=/usr
+}
+
+check() {
+    cd "$pkgname-$pkgver"
+    # Skip NIST STS tests which take long time and are prone to spurious
+    # failures in virtualized environments.
+    make -k test NO_NIST_STS=1
+}
+
+# Themis does not provide separate installation targets. It's easier to just
+# install everything and then remove unnecessary files for package splitting.
+
+package_themis() {
+    cd "$pkgbase-$pkgver"
+    make install PREFIX=/usr DESTDIR="$pkgdir/"
+    rm -rf "$pkgdir/usr/include"
+    rm -rf "$pkgdir/usr/lib"
+}
+
+package_themis-devel() {
+    pkgdesc="Themis header files and development libraries"
+    depends=("themis=$pkgver")
+
+    cd "$pkgbase-$pkgver"
+    make install PREFIX=/usr DESTDIR="$pkgdir/"
+    rm -rf "$pkgdir/usr/bin"
+}

@@ -1,0 +1,8 @@
+# The biggest thing in the universe
+node_modules/
+
+# Results of local "npm pack"
+*.tgz
+
+dist/
+dist-es6/

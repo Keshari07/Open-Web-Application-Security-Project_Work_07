@@ -1,0 +1,51 @@
+[package]
+name = "themis-core-bench"
+version = "0.0.0"
+edition = "2018"
+publish = false
+
+[dependencies]
+themis = { version = "0.15", path = "../../src/wrappers/themis/rust" }
+libthemis-sys = { version = "0.15", path = "../../src/wrappers/themis/rust/libthemis-sys" }
+
+[dev-dependencies]
+criterion = { version = "0.3.4", features = ["cargo_bench_support", "html_reports"] }
+# Unpin when MSRV > 1.60
+csv = "~1.1"
+# Freeze `rayon` and `rayon-core` versions (first is used by `criterion`)
+# so that benchmarks still build/run with Rust 1.58.
+# FIXME: remove these two after we bump minimum required Rust version
+rayon = "=1.6.1"
+rayon-core = "=1.10.1"
+
+[[bench]]
+name = "secure_cell_seal_master_key"
+harness = false
+
+[[bench]]
+name = "secure_cell_seal_passphrase"
+harness = false
+
+[[bench]]
+name = "secure_cell_token_protect_master_key"
+harness = false
+
+[[bench]]
+name = "secure_cell_context_imprint_master_key"
+harness = false
+
+[[bench]]
+name = "secure_message_encrypt_decrypt_ecdsa"
+harness = false
+
+[[bench]]
+name = "secure_message_encrypt_decrypt_rsa"
+harness = false
+
+[[bench]]
+name = "secure_message_sign_verify_ecdsa"
+harness = false
+
+[[bench]]
+name = "secure_message_sign_verify_rsa"
+harness = false
